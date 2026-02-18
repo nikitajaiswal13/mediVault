@@ -101,3 +101,50 @@ module.exports.login = async (req, res, next) => {
     });
   }
 };
+
+module.exports.protect = async (req, res, next) => {
+  try {
+    let token;
+
+    // 1️⃣ Get token from header
+    if (
+      req.headers.authorization &&
+      req.headers.authorization.startsWith("Bearer")
+    ) {
+      token = req.headers.authorization.split(" ")[1];
+    }
+
+    // 2️⃣ If no token → block access
+    if (!token) {
+      return res.status(401).json({
+        status: "failed",
+        message: "You are not logged in. Please login to get access.",
+      });
+    }
+
+    // 3️⃣ Verify token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_CODE);
+
+    // 4️⃣ Check if user still exists
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) {
+      return res.status(401).json({
+        status: "failed",
+        message: "User no longer exists.",
+      });
+    }
+
+    // 5️⃣ Attach user to request
+    req.user = currentUser;
+
+    // 6️⃣ Allow request to continue
+    next();
+
+  } catch (err) {
+    return res.status(401).json({
+      status: "failed",
+      message: "Invalid token",
+    });
+  }
+};
+
