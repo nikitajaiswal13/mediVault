@@ -15,6 +15,11 @@ const recordSchema = new mongoose.Schema(
       type: Date
     },
 
+    file: {                 // ⭐ ADD THIS
+      type: String,
+      required: true
+    },
+
     patient: {
       type: mongoose.Schema.ObjectId,
       ref: 'Patient',
