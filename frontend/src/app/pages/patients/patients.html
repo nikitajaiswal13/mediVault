@@ -1,1 +1,51 @@
-<p>patients works!</p>
+<div class="patients-container">
+
+  <mat-card class="add-card">
+    <mat-card-title>Add Patient</mat-card-title>
+
+    <form [formGroup]="patientForm" (ngSubmit)="addPatient()">
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Relation</mat-label>
+        <input matInput formControlName="relation" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput type="date" formControlName="dateOfBirth">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary">
+        Add Patient
+      </button>
+
+    </form>
+  </mat-card>
+
+  <mat-card class="list-card">
+    <mat-card-title>Your Patients</mat-card-title>
+
+    <div *ngFor="let patient of patients" class="patient-item">
+      <div>
+        <strong>{{ patient.name }}</strong> ({{ patient.relation }})
+      </div>
+
+      <div>
+        <button mat-button color="accent" [routerLink]="['/records', patient._id]">
+          View Records
+        </button>
+
+        <button mat-button color="warn" (click)="deletePatient(patient._id)">
+          Delete
+        </button>
+      </div>
+    </div>
+
+  </mat-card>
+
+</div>
