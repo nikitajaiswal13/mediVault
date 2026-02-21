@@ -1,47 +1,83 @@
 <div class="records-container">
 
-  <mat-card class="custom-card">
-    <mat-card-title>Upload Record</mat-card-title>
+  <!-- HEADER -->
+  <div class="patient-banner" *ngIf="patient">
 
-    <form (ngSubmit)="uploadRecord()">
+  <div class="avatar">
+    {{ patient.name.charAt(0) }}
+  </div>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Record Type</mat-label>
-        <input matInput [(ngModel)]="recordType" name="recordType" required>
-      </mat-form-field>
+  <div class="patient-info">
+    <h2>{{ patient.name }}</h2>
+    <p>{{ patient.relation }} • {{ patient.dateOfBirth | date:'mediumDate' }}</p>
+    <span class="record-count">
+      {{ records.length }} Records
+    </span>
+  </div>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Hospital</mat-label>
-        <input matInput [(ngModel)]="hospital" name="hospital">
-      </mat-form-field>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="openUploadDialog()">
+    + Upload Record
+  </button>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Date</mat-label>
-        <input matInput type="date" [(ngModel)]="date" name="date">
-      </mat-form-field>
+</div>
 
-      <input type="file" (change)="onFileSelected($event)" required>
 
-      <button mat-raised-button color="primary">
-        Upload
-      </button>
+  <!-- EMPTY STATE -->
+  <div *ngIf="records.length === 0 && !isLoading" class="empty-state">
+    <mat-icon>description</mat-icon>
+    <p>No records uploaded yet</p>
+  </div>
 
-    </form>
-  </mat-card>
 
-  <mat-card class="custom-card">
-    <mat-card-title>Records</mat-card-title>
+  <!-- RECORD GRID -->
+  <div class="records-grid">
 
-    <div *ngFor="let record of records" class="record-item">
-      <div>
-        <strong>{{ record.recordType }}</strong> - {{ record.hospital }}
+    <mat-card *ngFor="let record of records" class="record-card">
+
+      <!-- TOP SECTION -->
+      <div class="record-top">
+
+        <div>
+          <h3>{{ record.recordType }}</h3>
+          <span class="badge">{{ record.hospital }}</span>
+        </div>
+
+        <span class="record-date">
+          {{ record.date | date:'mediumDate' }}
+        </span>
+
       </div>
 
-      <button mat-button color="warn" (click)="deleteRecord(record._id)">
-        Delete
-      </button>
-    </div>
+      <!-- MIDDLE -->
+      <div class="record-middle">
+        <p>
+          Uploaded medical document related to {{ record.recordType }}.
+        </p>
+      </div>
 
-  </mat-card>
+      <!-- ACTIONS -->
+      <div class="record-actions">
+
+        <a
+          [href]="'http://localhost:3000/' + record.file"
+          target="_blank">
+          View File
+        </a>
+
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="deleteRecord(record._id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </div>
+
+    </mat-card>
+
+  </div>
 
 </div>

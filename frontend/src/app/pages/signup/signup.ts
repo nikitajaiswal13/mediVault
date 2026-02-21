@@ -18,6 +18,8 @@ export class Signup {
 
   signupForm: FormGroup;
   isLoading = false;
+  hidePassword = true;
+  hideConfirmPassword = true;
 
   private baseUrl = 'http://localhost:3000/api/v1/users';
 

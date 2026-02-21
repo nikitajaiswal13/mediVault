@@ -22,6 +22,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { AddRecordDialog } from './components/add-record-dialog/add-record-dialog';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     Records,
     Navbar,
     Home,
-    Footer
+    Footer,
+    Patients,
+    AddRecordDialog,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+        MatIconModule,
+        MatSelectModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './footer.css',
 })
 export class Footer {
-
+  get isLoggedIn(): boolean {
+  return !!localStorage.getItem('token');
+}
 }

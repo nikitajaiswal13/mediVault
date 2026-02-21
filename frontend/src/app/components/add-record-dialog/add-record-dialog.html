@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>Upload Medical Record</h2>
+
+<mat-dialog-content>
+
+  <form [formGroup]="recordForm" class="record-form">
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Record Type</mat-label>
+      <input matInput formControlName="recordType">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Hospital</mat-label>
+      <input matInput formControlName="hospital">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Date</mat-label>
+      <input matInput type="date" formControlName="date">
+    </mat-form-field>
+
+    <div class="file-upload">
+      <input type="file" (change)="onFileSelect($event)">
+    </div>
+
+  </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+
+  <button mat-button mat-dialog-close>
+    Cancel
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="submit()"
+    [disabled]="isLoading">
+
+    <mat-progress-spinner
+      *ngIf="isLoading"
+      diameter="20"
+      mode="indeterminate">
+    </mat-progress-spinner>
+
+    <span *ngIf="!isLoading">Upload</span>
+
+  </button>
+
+</mat-dialog-actions>

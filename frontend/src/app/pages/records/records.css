@@ -1,21 +1,156 @@
 .records-container {
-  padding: 30px;
-  max-width: 900px;
-  margin: auto;
+  padding: 60px 120px;
+  background: linear-gradient(to bottom, #f8fafc, #ffffff);
+  min-height: 100vh;
 }
 
-.upload-card, .list-card {
-  margin-bottom: 30px;
-  padding: 20px;
+/* =======================
+   PATIENT BANNER
+======================= */
+
+.patient-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #eef2ff, #e0f2fe);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  margin-bottom: 50px;
 }
 
-.full-width {
-  width: 100%;
+.avatar {
+  width: 85px;
+  height: 85px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 600;
+  margin-right: 25px;
+  box-shadow: 0 8px 20px rgba(37,99,235,0.25);
 }
 
-.record-item {
+.patient-info {
+  flex: 1;
+}
+
+.patient-info h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.patient-info p {
+  margin: 8px 0;
+  color: #475569;
+  font-size: 14px;
+}
+
+.record-count {
+  font-size: 13px;
+  background: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  color: #0369a1;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+
+/* =======================
+   GRID
+======================= */
+
+.records-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 30px;
+}
+
+/* =======================
+   CARD
+======================= */
+
+.record-card {
+  padding: 28px;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+  transition: all 0.25s ease;
+}
+
+.record-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+}
+
+.record-top {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+
+.record-top h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.badge {
+  display: inline-block;
+  margin-top: 8px;
+  background: #f1f5f9;
+  color: #334155;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.record-date {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.record-middle {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.record-actions {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.record-actions a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #2563eb;
+  transition: 0.2s ease;
+}
+
+.record-actions a:hover {
+  color: #1d4ed8;
+}
+
+/* =======================
+   EMPTY STATE
+======================= */
+
+.empty-state {
+  text-align: center;
+  margin-top: 120px;
+  color: #94a3b8;
+}
+
+.empty-state mat-icon {
+  font-size: 70px;
+  margin-bottom: 15px;
 }

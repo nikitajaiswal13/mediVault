@@ -16,6 +16,7 @@ export class Login {
 
   loginForm: FormGroup;
   isLoading = false;
+  hidePassword = true;
 
   private baseUrl = 'http://localhost:3000/api/v1/users';
 

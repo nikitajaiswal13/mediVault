@@ -28,4 +28,10 @@ export class Patient {
   deletePatient(id: string) {
     return this.http.delete(`${this.baseUrl}/${id}`, { headers: this.getHeaders() });
   }
+
+    getPatientById(id: string) {
+  return this.http.get(`http://localhost:3000/api/v1/patients/${id}`, {
+    headers: this.getHeaders()
+  });
+}
 }

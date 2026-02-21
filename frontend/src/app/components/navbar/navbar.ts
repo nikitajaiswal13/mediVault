@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { Login } from '../../pages/login/login';  
+import { Login } from '../../pages/login/login';
 import { Signup } from '../../pages/signup/signup';
 
 @Component({
@@ -15,7 +15,12 @@ export class Navbar {
   constructor(
     private router: Router,
     private dialog: MatDialog
-  ) {}
+  ) { }
+
+
+  get isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
 
   openLogin() {
     this.dialog.open(Login, {
@@ -32,7 +37,11 @@ export class Navbar {
 
 
   logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/']);
+    const confirmed = confirm('Are you sure you want to logout?');
+
+    if (confirmed) {
+      localStorage.removeItem('token');
+      this.router.navigate(['/']);
+    }
   }
 }

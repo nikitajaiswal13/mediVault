@@ -1,0 +1,13 @@
+.record-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.file-upload {
+  margin-top: 10px;
+}

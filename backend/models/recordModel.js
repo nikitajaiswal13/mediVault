@@ -15,7 +15,7 @@ const recordSchema = new mongoose.Schema(
       type: Date
     },
 
-    file: {                 // ⭐ ADD THIS
+    file: {                 
       type: String,
       required: true
     },

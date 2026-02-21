@@ -33,7 +33,16 @@
     <!-- PASSWORD -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Password</mat-label>
-      <input matInput type="password" formControlName="password">
+
+      <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+
+      <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+
+        <mat-icon>
+          {{ hidePassword ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+
+      </button>
 
       <mat-error *ngIf="signupForm.get('password')?.hasError('required')">
         Password is required
@@ -46,36 +55,44 @@
 
 
     <!-- CONFIRM PASSWORD -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Confirm Password</mat-label>
-      <input matInput type="password" formControlName="passwordConfirm">
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label>Confirm Password</mat-label>
 
-      <mat-error *ngIf="signupForm.get('passwordConfirm')?.hasError('required')">
-        Confirm your password
-      </mat-error>
+  <input
+    matInput
+    [type]="hideConfirmPassword ? 'password' : 'text'"
+    formControlName="passwordConfirm">
 
-      <mat-error *ngIf="signupForm.hasError('passwordMismatch')">
-        Passwords do not match
-      </mat-error>
-    </mat-form-field>
+  <button
+    mat-icon-button
+    matSuffix
+    type="button"
+    (click)="hideConfirmPassword = !hideConfirmPassword">
+
+    <mat-icon>
+      {{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}
+    </mat-icon>
+
+  </button>
+
+  <mat-error *ngIf="signupForm.get('passwordConfirm')?.hasError('required')">
+    Confirm your password
+  </mat-error>
+
+  <mat-error *ngIf="signupForm.hasError('passwordMismatch')">
+    Passwords do not match
+  </mat-error>
+</mat-form-field>
 
 
     <!-- BUTTON -->
-    <button
-      mat-raised-button
-      color="primary"
-      class="full-width signup-btn"
-      type="submit"
-      [disabled]="isLoading">
+    <button mat-raised-button color="primary" class="full-width signup-btn" type="submit" [disabled]="isLoading">
 
-      <mat-progress-spinner
-        *ngIf="isLoading"
-        diameter="20"
-        mode="indeterminate">
+      <mat-progress-spinner *ngIf="isLoading" diameter="20" mode="indeterminate">
       </mat-progress-spinner>
 
       <span *ngIf="!isLoading">Sign Up</span>
-
+  
     </button>
 
   </form>

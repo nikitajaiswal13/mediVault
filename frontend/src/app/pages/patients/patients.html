@@ -1,51 +1,114 @@
-<div class="patients-container">
+<section class="patients-page">
 
-  <mat-card class="custom-card">
-    <mat-card-title>Add Patient</mat-card-title>
+    <!-- ===== BANNER ===== -->
+    <div class="patients-banner">
+        <div class="banner-content">
+            <h1>Patient Management</h1>
+            <p>Securely manage and access medical records with ease.</p>
+        </div>
 
-    <form [formGroup]="patientForm" (ngSubmit)="addPatient()">
+        <img src="assets/img/medical-illustration.png" alt="Medical Illustration" class="banner-image" />
+    </div>
+    <!-- ===== HEADER ===== -->
+    <div class="patients-header">
+        <div>
+            <h2>Patients</h2>
+            <p>Manage and view all registered patients</p>
+        </div>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name" required>
-      </mat-form-field>
+        <div class="header-actions">
+            <mat-form-field appearance="outline" class="search-field">
+                <mat-label>Search patient</mat-label>
+                <input matInput [(ngModel)]="searchText">
+            </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Relation</mat-label>
-        <input matInput formControlName="relation" required>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Date of Birth</mat-label>
-        <input matInput type="date" formControlName="dateOfBirth">
-      </mat-form-field>
-
-      <button mat-raised-button color="primary">
-        Add Patient
-      </button>
-
-    </form>
-  </mat-card>
-
-  <mat-card class="custom-card">
-    <mat-card-title>Your Patients</mat-card-title>
-
-    <div *ngFor="let patient of patients" class="patient-item">
-      <div>
-        <strong>{{ patient.name }}</strong> ({{ patient.relation }})
-      </div>
-
-      <div>
-        <button mat-button color="accent" [routerLink]="['/records', patient._id]">
-          View Records
-        </button>
-
-        <button mat-button color="warn" (click)="deletePatient(patient._id)">
-          Delete
-        </button>
-      </div>
+            <button mat-raised-button color="primary" (click)="toggleAddForm()">
+                {{ showAddForm ? 'Cancel' : '+ Add Patient' }}
+            </button>
+        </div>
     </div>
 
-  </mat-card>
+    <!-- ===== ADD FORM ===== -->
+    <div class="add-form-container" *ngIf="showAddForm">
+        <form [formGroup]="patientForm" (ngSubmit)="addPatient()" class="add-form">
 
-</div>
+            <!-- NAME -->
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+
+            <!-- RELATION DROPDOWN -->
+            <mat-form-field appearance="outline">
+                <mat-label>Relation</mat-label>
+                <mat-select formControlName="relation">
+                    <mat-option value="Self">Self</mat-option>
+                    <mat-option value="Father">Father</mat-option>
+                    <mat-option value="Mother">Mother</mat-option>
+                    <mat-option value="Brother">Brother</mat-option>
+                    <mat-option value="Sister">Sister</mat-option>
+                    <mat-option value="Spouse">Spouse</mat-option>
+                    <mat-option value="Son">Son</mat-option>
+                    <mat-option value="Daughter">Daughter</mat-option>
+                    <mat-option value="Other">Other</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- DOB -->
+            <mat-form-field appearance="outline">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput type="date" formControlName="dateOfBirth">
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit">
+                Save Patient
+            </button>
+
+        </form>
+    </div>
+
+    <!-- ===== PATIENT GRID ===== -->
+    <div class="patients-grid" *ngIf="filteredPatients().length > 0; else emptyState">
+
+        <mat-card class="patient-card" *ngFor="let patient of filteredPatients()">
+
+            <div class="card-top">
+                <div class="avatar">
+                    {{ patient.name?.charAt(0).toUpperCase() }}
+                </div>
+
+                <div class="name-section">
+                    <h3>{{ patient.name }}</h3>
+                    <span class="relation">{{ patient.relation }}</span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="card-body">
+                <p>DOB: {{ patient.dateOfBirth | date }}</p>
+            </div>
+
+            <div class="card-actions">
+                <button mat-stroked-button color="primary" [routerLink]="['/records', patient._id]">
+                    View Records
+                </button>
+
+                <button mat-button color="warn" (click)="deletePatient(patient._id)">
+                    Delete
+                </button>
+            </div>
+
+        </mat-card>
+
+    </div>
+
+    <!-- ===== EMPTY STATE ===== -->
+    <ng-template #emptyState>
+        <div class="empty-state">
+            <h3>No patients added yet</h3>
+            <p>Click “Add Patient” to create your first entry.</p>
+        </div>
+    </ng-template>
+
+</section>

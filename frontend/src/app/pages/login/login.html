@@ -7,6 +7,7 @@
     <!-- EMAIL -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Email</mat-label>
+
       <input
         matInput
         type="email"
@@ -25,10 +26,24 @@
     <!-- PASSWORD -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Password</mat-label>
+
       <input
         matInput
-        type="password"
+        [type]="hidePassword ? 'password' : 'text'"
         formControlName="password">
+
+      <!-- TOGGLE BUTTON -->
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        (click)="hidePassword = !hidePassword">
+
+        <mat-icon>
+          {{ hidePassword ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+
+      </button>
 
       <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
         Password is required
