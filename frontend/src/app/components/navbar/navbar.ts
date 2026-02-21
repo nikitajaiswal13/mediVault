@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { Login } from '../../pages/login/login';  
+import { Signup } from '../../pages/signup/signup';
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +12,27 @@ import { Router } from '@angular/router';
 })
 export class Navbar {
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
+
+  openLogin() {
+    this.dialog.open(Login, {
+      width: '400px'
+    });
+  }
+
+
+  openSignup() {
+    this.dialog.open(Signup, {
+      width: '420px'
+    });
+  }
+
 
   logout() {
     localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 }

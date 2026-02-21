@@ -1,20 +1,35 @@
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
+.dialog-title {
+  font-weight: 600;
+  font-size: 22px;
 }
 
-.login-card {
-  width: 400px;
-  padding: 20px;
+.login-form {
+  margin-top: 10px;
 }
 
 .full-width {
   width: 100%;
+  margin-bottom: 16px;
+}
+
+.login-btn {
+  height: 45px;
+  margin-top: 10px;
 }
 
 .signup-link {
-  margin-top: 15px;
   text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.signup-link a {
+  color: #2563eb;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
 }

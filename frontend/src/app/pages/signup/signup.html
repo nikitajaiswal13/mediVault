@@ -1,38 +1,37 @@
-<div class="login-container">
-  <mat-card class="login-card">
-    <mat-card-title>Signup</mat-card-title>
+<h2 mat-dialog-title class="dialog-title">Create Account</h2>
 
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+<mat-dialog-content>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name" required>
-      </mat-form-field>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="signup-form">
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="email" required>
-      </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Full Name</mat-label>
+      <input matInput formControlName="name" required>
+    </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Password</mat-label>
-        <input matInput type="password" formControlName="password" required>
-      </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" required>
+    </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Confirm Password</mat-label>
-        <input matInput type="password" formControlName="passwordConfirm" required>
-      </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" required>
+    </mat-form-field>
 
-      <button mat-raised-button color="primary" class="full-width">
-        Signup
-      </button>
+    <button mat-raised-button color="primary" class="full-width signup-btn">
+      Sign Up
+    </button>
 
-    </form>
+  </form>
 
-    <div class="signup-link">
-      <a routerLink="/login">Already have an account? Login</a>
-    </div>
+  <div class="login-link">
+    Already have an account?
+    <a (click)="openLogin()">Login</a>
+  </div>
 
-  </mat-card>
-</div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

@@ -1,6 +1,6 @@
 <div class="records-container">
 
-  <mat-card class="upload-card">
+  <mat-card class="custom-card">
     <mat-card-title>Upload Record</mat-card-title>
 
     <form (ngSubmit)="uploadRecord()">
@@ -29,7 +29,7 @@
     </form>
   </mat-card>
 
-  <mat-card class="list-card">
+  <mat-card class="custom-card">
     <mat-card-title>Records</mat-card-title>
 
     <div *ngFor="let record of records" class="record-item">

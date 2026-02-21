@@ -1,6 +1,6 @@
 <div class="patients-container">
 
-  <mat-card class="add-card">
+  <mat-card class="custom-card">
     <mat-card-title>Add Patient</mat-card-title>
 
     <form [formGroup]="patientForm" (ngSubmit)="addPatient()">
@@ -27,7 +27,7 @@
     </form>
   </mat-card>
 
-  <mat-card class="list-card">
+  <mat-card class="custom-card">
     <mat-card-title>Your Patients</mat-card-title>
 
     <div *ngFor="let patient of patients" class="patient-item">

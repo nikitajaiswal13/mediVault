@@ -7,9 +7,11 @@ import { Login } from './pages/login/login';
 import { Signup } from './pages/signup/signup';
 import { Patients } from './pages/patients/patients';
 import { Records } from './pages/records/records';
+import { Home } from './pages/home/home';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: Home },
   { path: 'login', component: Login },
   { path: 'signup', component: Signup },
   { path: 'patients', component: Patients , canActivate: [authGuard]},
