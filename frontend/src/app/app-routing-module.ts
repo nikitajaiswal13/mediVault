@@ -15,8 +15,9 @@ const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'signup', component: Signup },
   { path: 'patients', component: Patients , canActivate: [authGuard]},
+  { path: 'records/:patientId', component: Records , canActivate: [authGuard] },
   {path : 'records', component: Records , canActivate: [authGuard]},
-  { path: 'records/:patientId', component: Records , canActivate: [authGuard] }
+  {path : '**', redirectTo: 'home' }
 ];
 
 @NgModule({

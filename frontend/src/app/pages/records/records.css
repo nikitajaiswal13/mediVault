@@ -1,156 +1,106 @@
-.records-container {
-  padding: 60px 120px;
-  background: linear-gradient(to bottom, #f8fafc, #ffffff);
-  min-height: 100vh;
+.records-page {
+  padding: 40px 80px;
 }
 
-/* =======================
-   PATIENT BANNER
-======================= */
-
-.patient-banner {
+/* HERO SECTION */
+.records-hero {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   padding: 40px;
-  border-radius: 22px;
-  background: linear-gradient(135deg, #eef2ff, #e0f2fe);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-  margin-bottom: 50px;
+  border-radius: 20px;
+  background: linear-gradient(to right, #e8f0ff, #f5f8ff);
+  margin-bottom: 40px;
 }
 
-.avatar {
-  width: 85px;
-  height: 85px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.records-hero h1 {
   font-size: 32px;
   font-weight: 600;
-  margin-right: 25px;
-  box-shadow: 0 8px 20px rgba(37,99,235,0.25);
+  margin-bottom: 8px;
 }
 
-.patient-info {
-  flex: 1;
+.records-hero p {
+  color: #555;
+  font-size: 15px;
 }
 
-.patient-info h2 {
-  margin: 0;
-  font-size: 26px;
-  font-weight: 600;
-}
-
-.patient-info p {
-  margin: 8px 0;
-  color: #475569;
-  font-size: 14px;
-}
-
-.record-count {
-  font-size: 13px;
-  background: white;
-  padding: 6px 14px;
-  border-radius: 20px;
-  color: #0369a1;
-  font-weight: 500;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-}
-
-/* =======================
-   GRID
-======================= */
-
+/* GRID */
 .records-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 30px;
 }
 
-/* =======================
-   CARD
-======================= */
-
+/* CARD */
 .record-card {
-  padding: 28px;
-  border-radius: 20px;
   background: white;
+  padding: 24px;
+  border-radius: 18px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
 }
 
 .record-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
 }
 
-.record-top {
+.record-card-top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
+  margin-bottom: 20px;
 }
 
-.record-top h3 {
-  margin: 0;
-  font-size: 20px;
+.record-card-top h3 {
+  font-size: 18px;
   font-weight: 600;
 }
 
-.badge {
+.hospital {
   display: inline-block;
-  margin-top: 8px;
-  background: #f1f5f9;
-  color: #334155;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.record-date {
+  margin-top: 4px;
   font-size: 13px;
-  color: #64748b;
+  color: #4b5563;
 }
 
-.record-middle {
-  margin-top: 20px;
+.date {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* BODY */
+.record-card-body {
+  margin-bottom: 20px;
   font-size: 14px;
-  color: #475569;
-  line-height: 1.6;
+  color: #444;
 }
 
-.record-actions {
-  margin-top: 25px;
+/* ACTIONS */
+.record-card-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.record-actions a {
-  text-decoration: none;
-  font-weight: 600;
+.view-link {
   color: #2563eb;
-  transition: 0.2s ease;
+  font-weight: 500;
+  text-decoration: none;
 }
 
-.record-actions a:hover {
-  color: #1d4ed8;
+.view-link:hover {
+  text-decoration: underline;
 }
 
-/* =======================
-   EMPTY STATE
-======================= */
-
+/* EMPTY STATE */
 .empty-state {
   text-align: center;
-  margin-top: 120px;
-  color: #94a3b8;
+  padding: 60px 0;
+  color: #6b7280;
 }
 
 .empty-state mat-icon {
-  font-size: 70px;
-  margin-bottom: 15px;
+  font-size: 40px;
+  margin-bottom: 10px;
 }

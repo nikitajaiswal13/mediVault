@@ -80,3 +80,20 @@ exports.deleteRecord = async (req, res) => {
     });
   }
 };
+
+exports.getAllRecords = async(req, res) => {
+  try {
+    const records = await Record.find({ user: req.user.id }).sort({ date: -1 });
+
+    res.status(200).json({
+      status: 'success',
+      results: records.length,
+      data: records
+    });
+  }catch(err){
+        res.status(400).json({
+      status: 'fail',
+      message: err.message
+    });
+  }
+}

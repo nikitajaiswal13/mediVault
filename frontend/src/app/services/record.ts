@@ -36,6 +36,13 @@ export class Record {
       headers: this.getHeaders()
     });
   }
+
+  getAllRecords() {
+  return this.http.get(this.baseUrl, {
+    headers: this.getHeaders()
+  });
+}
+
 //   getPatientById(id: string) {
 //   return this.http.get(`http://localhost:3000/api/v1/patients/${id}`, {
 //     headers: this.getHeaders()

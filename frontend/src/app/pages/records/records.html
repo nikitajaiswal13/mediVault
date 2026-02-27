@@ -1,67 +1,87 @@
-<div class="records-container">
+<div class="records-page">
 
-  <!-- HEADER -->
-  <div class="patient-banner" *ngIf="patient">
+  <!-- ================= HERO ================= -->
+  <div class="records-hero">
 
-  <div class="avatar">
-    {{ patient.name.charAt(0) }}
+    <div class="hero-text">
+      <h1>
+        {{ isPatientView ? 'Patient Records' : 'All Medical Records' }}
+      </h1>
+
+      <p>
+        {{ isPatientView
+            ? 'Manage and upload records for this patient.'
+            : 'View medical records across all patients.' }}
+      </p>
+    </div>
+
+    <!-- Upload allowed ONLY in patient view -->
+    <button
+      *ngIf="isPatientView"
+      mat-raised-button
+      color="primary"
+      (click)="openUploadDialog()">
+      + Upload Record
+    </button>
+
   </div>
 
-  <div class="patient-info">
-    <h2>{{ patient.name }}</h2>
-    <p>{{ patient.relation }} • {{ patient.dateOfBirth | date:'mediumDate' }}</p>
-    <span class="record-count">
-      {{ records.length }} Records
-    </span>
+
+  <!-- ================= LOADING ================= -->
+  <div *ngIf="isLoading" class="empty-state">
+    <mat-icon>hourglass_empty</mat-icon>
+    <p>Loading records...</p>
   </div>
 
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="openUploadDialog()">
-    + Upload Record
-  </button>
 
-</div>
-
-
-  <!-- EMPTY STATE -->
-  <div *ngIf="records.length === 0 && !isLoading" class="empty-state">
+  <!-- ================= EMPTY STATE ================= -->
+  <div *ngIf="!isLoading && records.length === 0" class="empty-state">
     <mat-icon>description</mat-icon>
-    <p>No records uploaded yet</p>
+    <h3>No records found</h3>
+    <p>
+      {{ isPatientView
+          ? 'Upload the first medical document for this patient.'
+          : 'No records available yet.' }}
+    </p>
   </div>
 
 
-  <!-- RECORD GRID -->
-  <div class="records-grid">
+  <!-- ================= RECORD GRID ================= -->
+  <div *ngIf="!isLoading && records.length > 0" class="records-grid">
 
-    <mat-card *ngFor="let record of records" class="record-card">
+    <div *ngFor="let record of records" class="record-card">
 
-      <!-- TOP SECTION -->
-      <div class="record-top">
+      <!-- TOP -->
+      <div class="record-card-top">
 
-        <div>
+        <div class="record-info">
           <h3>{{ record.recordType }}</h3>
-          <span class="badge">{{ record.hospital }}</span>
+          <span class="hospital">
+            {{ record.hospital || 'Unknown Hospital' }}
+          </span>
         </div>
 
-        <span class="record-date">
+        <span class="date">
           {{ record.date | date:'mediumDate' }}
         </span>
 
       </div>
 
-      <!-- MIDDLE -->
-      <div class="record-middle">
+
+      <!-- BODY -->
+      <div class="record-card-body">
         <p>
-          Uploaded medical document related to {{ record.recordType }}.
+          Medical document related to
+          <strong>{{ record.recordType }}</strong>.
         </p>
       </div>
 
+
       <!-- ACTIONS -->
-      <div class="record-actions">
+      <div class="record-card-actions">
 
         <a
+          class="view-link"
           [href]="'http://localhost:3000/' + record.file"
           target="_blank">
           View File
@@ -76,7 +96,7 @@
 
       </div>
 
-    </mat-card>
+    </div>
 
   </div>
 
