@@ -11,6 +11,7 @@ import { Home } from './pages/home/home';
 import { Privacy } from './pages/privacy/privacy';
 import {Terms} from "./pages/terms/terms";
 import {Contact} from "./pages/contact/contact";
+import { Dashboard } from './pages/dashboard/dashboard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path : 'privacy', component: Privacy },
   {path : 'terms', component: Terms },
   {path : 'contact', component: Contact },
+  {path : 'dashboard' , component : Dashboard , canActivate: [authGuard]},
   { path: 'patients', component: Patients , canActivate: [authGuard]},
   { path: 'records/:patientId', component: Records , canActivate: [authGuard] },
   {path : 'records', component: Records , canActivate: [authGuard]},

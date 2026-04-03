@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AddRecordDialog } from '../../components/add-record-dialog/add-record-dialog';
 import { Record } from '../../services/record';
+  import { ConfirmDialog } from '../../shared/confirm-dialog/confirm-dialog';
+
 
 @Component({
   selector: 'app-records',
@@ -125,10 +127,29 @@ export class Records implements OnInit {
   // ===============================
   // DELETE
   // ===============================
-  deleteRecord(id: string): void {
-    this.recordService.deleteRecord(id)
-      .subscribe(() => {
+  // deleteRecord(id: string): void {
+  //   this.recordService.deleteRecord(id)
+  //     .subscribe(() => {
+  //       this.records = this.records.filter(r => r._id !== id);
+  //     });
+  // }
+
+
+deleteRecord(id: string): void {
+
+  const dialogRef = this.dialog.open(ConfirmDialog, {
+    width: '350px',
+    data: {
+      message: 'Are you sure you want to delete this record?'
+    }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.recordService.deleteRecord(id).subscribe(() => {
         this.records = this.records.filter(r => r._id !== id);
       });
-  }
+    }
+  });
+}
 }

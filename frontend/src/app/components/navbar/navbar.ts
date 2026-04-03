@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { Login } from '../../pages/login/login';
 import { Signup } from '../../pages/signup/signup';
+import { ConfirmDialog } from '../../shared/confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-navbar',
@@ -36,12 +37,25 @@ export class Navbar {
   }
 
 
-  logout() {
-    const confirmed = confirm('Are you sure you want to logout?');
+  logout(): void {
 
-    if (confirmed) {
-      localStorage.removeItem('token');
-      this.router.navigate(['/']);
+  const dialogRef = this.dialog.open(ConfirmDialog, {
+    width: '350px',
+    data: {
+      title: 'Confirm Logout',
+      message: 'Are you sure you want to log out?'
     }
-  }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+
+    if (result) {
+      // ✅ ACTUAL LOGOUT
+      localStorage.removeItem('token');
+
+      this.router.navigate(['/home']);
+    }
+
+  });
+}
 }

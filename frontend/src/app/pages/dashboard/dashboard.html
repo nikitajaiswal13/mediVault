@@ -1,0 +1,79 @@
+<section class="dashboard">
+
+  <!-- ===== HERO (same style as others) ===== -->
+  <div class="dashboard-banner">
+    <div>
+      <h1>Dashboard</h1>
+      <p>Overview of your patients and medical records.</p>
+    </div>
+  </div>
+
+
+  <!-- ===== STATS (simple, not boxes) ===== -->
+  <div class="stats-row">
+
+    <div class="stat">
+      <h2>{{ totalPatients }}</h2>
+      <p>Patients</p>
+    </div>
+
+    <div class="stat">
+      <h2>{{ totalRecords }}</h2>
+      <p>Records</p>
+    </div>
+
+    <div class="stat">
+      <h2>{{ recentUploads }}</h2>
+      <p>Uploads (7 days)</p>
+    </div>
+
+  </div>
+
+
+  <!-- ===== CONTENT ===== -->
+  <div class="dashboard-grid">
+
+    <!-- Patients -->
+    <div class="section">
+      <h2>Recent Patients</h2>
+
+      <div *ngFor="let p of patients.slice(0,3)" class="item">
+        <div class="left">
+          <div class="avatar">
+            {{ p.name?.charAt(0).toUpperCase() }}
+          </div>
+
+          <div>
+            <p class="name">{{ p.name }}</p>
+            <span class="relation">{{ p.relation }}</span>
+          </div>
+        </div>
+
+        <button [routerLink]="['/records', p._id]">
+          View
+        </button>
+      </div>
+
+    </div>
+
+
+    <!-- Records -->
+    <div class="section">
+      <h2>Recent Records</h2>
+
+      <div *ngFor="let r of records.slice(0,3)" class="item">
+        <div>
+          <p class="name">{{ r.recordType }}</p>
+          <span class="hospital">{{ r.hospital }}</span>
+        </div>
+
+        <a [href]="'http://localhost:3000/uploads/' + r.file" target="_blank">
+          View
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

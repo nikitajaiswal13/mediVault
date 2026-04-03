@@ -1,6 +1,8 @@
 import { Component, OnInit  , ChangeDetectorRef} from '@angular/core';
 import { Patient } from '../../services/patient';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ConfirmDialog } from '../../shared/confirm-dialog/confirm-dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-patients',
@@ -33,7 +35,8 @@ export class Patients implements OnInit {
   constructor(
     private patientService: Patient,
     private fb: FormBuilder,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private dialog: MatDialog
   ) {
     this.patientForm = this.fb.group({
       name: ['', Validators.required],
@@ -76,12 +79,30 @@ export class Patients implements OnInit {
     });
 }
 
+  // deletePatient(id: string): void {
+  //   this.patientService.deletePatient(id)
+  //     .subscribe(() => {
+  //       this.loadPatients();
+  //     });
+  // }
+
   deletePatient(id: string): void {
-    this.patientService.deletePatient(id)
-      .subscribe(() => {
-        this.loadPatients();
+
+  const dialogRef = this.dialog.open(ConfirmDialog, {
+    width: '380px',
+    data: {
+      message: 'Are you sure you want to delete this patient?'
+    }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.patientService.deletePatient(id).subscribe(() => {
+        this.patients = this.patients.filter(p => p._id !== id);
       });
-  }
+    }
+  });
+}
 
   filteredPatients(): any[] {
     if (!this.searchText) return this.patients;

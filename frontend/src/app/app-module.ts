@@ -32,6 +32,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { Dashboard } from './pages/dashboard/dashboard';
+import { ConfirmDialog } from './shared/confirm-dialog/confirm-dialog';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     Terms,
     Privacy,
     Contact,
+    Dashboard,
+    ConfirmDialog,
     
   ],
   imports: [
