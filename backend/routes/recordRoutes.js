@@ -6,7 +6,6 @@ const upload = require("../middlewares/upload");
 const router = express.Router();
 
 router.use(authController.protect);
-// add & get records of a patient
 
 router.route("/").get(recordController.getAllRecords);
 
