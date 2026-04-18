@@ -4,12 +4,26 @@
   min-height: 100vh;
 }
 
-/* ===== BANNER ===== */
+
 .dashboard-banner {
-  background: #eaf0fb;
-  padding: 30px;
-  border-radius: 20px;
-  margin-bottom: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 60px 70px;
+  border-radius: 24px;
+  background: #e9eef9;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+.banner-image {
+  position: absolute;
+  right: 20px; 
+  bottom: -30px;
+  width: 430px; 
+  opacity: 0.55; 
+  z-index: 1;
+  pointer-events: none;
 }
 
 .dashboard-banner h1 {
@@ -21,7 +35,6 @@
   color: #64748b;
 }
 
-/* ===== STATS ===== */
 .stats-row {
   display: flex;
   gap: 40px;
@@ -38,21 +51,18 @@
   color: #64748b;
 }
 
-/* ===== GRID ===== */
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
 }
 
-/* ===== SECTION ===== */
 .section {
   background: white;
   padding: 20px;
   border-radius: 16px;
 }
 
-/* ===== ITEM ===== */
 .item {
   display: flex;
   justify-content: space-between;
@@ -65,7 +75,6 @@
   border-bottom: none;
 }
 
-/* LEFT */
 .left {
   display: flex;
   align-items: center;
@@ -83,7 +92,6 @@
   justify-content: center;
 }
 
-/* TEXT */
 .name {
   font-weight: 500;
 }
@@ -109,7 +117,6 @@ button:hover {
   color: white;
 }
 
-/* LINK */
 a {
   color: #2563eb;
   font-size: 13px;

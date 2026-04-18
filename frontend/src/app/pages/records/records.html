@@ -1,36 +1,41 @@
 <div class="records-page">
 
-  <!-- ================= HERO ================= -->
-  <div class="records-hero">
+<div class="records-hero">
 
-    <div class="hero-text">
-      <h1>
-        {{ isPatientView ? 'Patient Records' : 'All Medical Records' }}
-      </h1>
+  <div class="hero-text">
+    <h1>
+      {{ isPatientView ? 'Patient Records' : 'All Medical Records' }}
+    </h1>
 
-      <p>
-        {{ isPatientView
-        ? 'Manage and upload records for this patient.'
-        : 'View medical records across all patients.' }}
-      </p>
-    </div>
-
-    <!-- Upload allowed ONLY in patient view -->
-    <button *ngIf="isPatientView" mat-raised-button color="primary" (click)="openUploadDialog()">
-      + Upload Record
-    </button>
-
+    <p>
+      {{ isPatientView
+      ? 'Manage and upload records for this patient.'
+      : 'View medical records across all patients.' }}
+    </p>
   </div>
 
+  <!-- IMAGE OUTSIDE -->
+  <img src="assets/img/records.png"
+       alt="Medical Records"
+       class="banner-image" />
 
-  <!-- ================= LOADING ================= -->
+  <!-- BUTTON -->
+  <button
+    *ngIf="isPatientView"
+    mat-raised-button
+    color="primary"
+    (click)="openUploadDialog()">
+    + Upload Record
+  </button>
+
+</div>
+
   <div *ngIf="isLoading" class="empty-state">
     <mat-icon>hourglass_empty</mat-icon>
     <p>Loading records...</p>
   </div>
 
 
-  <!-- ================= EMPTY STATE ================= -->
   <div *ngIf="!isLoading && records.length === 0" class="empty-state">
     <mat-icon>description</mat-icon>
     <h3>No records found</h3>
@@ -42,12 +47,10 @@
   </div>
 
 
-  <!-- ================= RECORD GRID ================= -->
   <div *ngIf="!isLoading && records.length > 0" class="records-grid">
 
     <div *ngFor="let record of records" class="record-card">
 
-      <!-- TOP -->
       <div class="record-card-top">
 
         <div class="record-info">
@@ -64,7 +67,6 @@
       </div>
 
 
-      <!-- BODY -->
       <div class="record-card-body">
         <p>
           Medical document related to
@@ -73,7 +75,6 @@
       </div>
 
 
-      <!-- ACTIONS -->
       <div class="record-card-actions">
 
         <a class="view-link" [href]="'http://localhost:3000/uploads/' + record.file" target="_blank">

@@ -1,11 +1,9 @@
-/* ===== PAGE WRAPPER ===== */
 .patients-page {
   padding: 40px 60px;
   background: #f5f7fb;
   min-height: 100vh;
 }
 
-/* ===== BANNER ===== */
 .patients-banner {
   position: relative;
   display: flex;
@@ -17,7 +15,6 @@
   margin-bottom: 50px;
 }
 
-/* TEXT */
 .banner-content {
   position: relative;
   z-index: 2;
@@ -36,29 +33,26 @@
   color: #4b5563;
 }
 
-/* IMAGE */
 .banner-image {
   position: absolute;
-  right: 20px; /* move closer */
-  bottom: -20px;
-  width: 430px; /* slightly smaller */
-  opacity: 0.45; /* stronger visibility */
+  right: 30px;
+  bottom: -20px;  
+  width: 255px;   
+  opacity: 0.65;  
   z-index: 1;
   pointer-events: none;
 }
 
-/* SOFTER FADE */
 .patients-banner::after {
   content: '';
   position: absolute;
   right: 0;
   top: 0;
   height: 100%;
-  width: 35%; /* smaller fade area */
+  width: 35%; 
   background: linear-gradient(to right, rgba(233, 238, 249, 0) 0%, rgba(233, 238, 249, 0.8) 90%);
 }
 
-/* ===== HEADER ===== */
 .patients-header {
   display: flex;
   justify-content: space-between;
@@ -88,7 +82,6 @@
   width: 260px;
 }
 
-/* ===== ADD FORM ===== */
 .add-form-container {
   margin-bottom: 40px;
 }
@@ -103,14 +96,12 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
-/* ===== GRID ===== */
 .patients-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
 }
 
-/* ===== CARD ===== */
 .patient-card {
   border-radius: 14px;
   padding: 20px;
@@ -124,7 +115,6 @@
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
 }
 
-/* ===== CARD CONTENT ===== */
 .card-top {
   display: flex;
   align-items: center;
@@ -174,7 +164,6 @@
   margin-top: 18px;
 }
 
-/* ===== EMPTY STATE ===== */
 .empty-state {
   margin-top: 60px;
   padding: 40px;
