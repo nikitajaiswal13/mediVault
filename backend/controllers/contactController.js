@@ -1,41 +1,33 @@
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 exports.sendContactEmail = async (req, res) => {
   const { name, email, message } = req.body;
 
   try {
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false, 
-  auth: {
-    user: process.env.EMAIL,
-    pass: process.env.EMAIL_PASSWORD
-  }
-});
 
-    await transporter.sendMail({
-      from: process.env.EMAIL,
-      replyTo: email,
-      to: process.env.EMAIL,
-      subject: `Contact Form Submission from ${name}`,
-      text: message
+    await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: process.env.EMAIL, // your email
+      subject: `Contact Form from ${name}`,
+      html: `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong> ${message}</p>
+      `
     });
 
-    return res.status(200).json({
+    res.status(200).json({
       success: true,
-      message: "Email sent successfully"
+      message: "Email sent"
     });
 
   } catch (err) {
-    console.error('Error sending contact email:', err);
+    console.error(err);
 
-    return res.status(500).json({
+    res.status(500).json({
       success: false,
-      message: 'Failed to send contact email'
+      message: "Failed"
     });
   }
-
-  console.log("EMAIL:", process.env.EMAIL);
-console.log("PASS:", process.env.EMAIL_PASSWORD);
 };
