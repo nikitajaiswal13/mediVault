@@ -39,22 +39,29 @@ export class Navbar {
 
   logout(): void {
 
-  const dialogRef = this.dialog.open(ConfirmDialog, {
-    width: '350px',
-    data: {
-      title: 'Confirm Logout',
-      message: 'Are you sure you want to log out?'
-    }
-  });
+    const dialogRef = this.dialog.open(ConfirmDialog, {
+      width: '350px',
+      data: {
+        title: 'Confirm Logout',
+        message: 'Are you sure you want to log out?'
+      }
+    });
 
-  dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(result => {
 
-    if (result) {
-      localStorage.removeItem('token');
+      if (result) {
+        localStorage.removeItem('token');
 
-      this.router.navigate(['/home']);
-    }
+        this.router.navigate(['/home']);
+      }
 
-  });
-}
+    });
+
+  }
+
+  isMenuOpen = false;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 }

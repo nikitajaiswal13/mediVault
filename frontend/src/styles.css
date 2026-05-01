@@ -9,11 +9,32 @@
 
   --shadow-light: 0 4px 12px rgba(0,0,0,0.05);
   --shadow-hover: 0 8px 20px rgba(0,0,0,0.08);
+
+  --primary-color: #2563eb;
+  --primary-light: rgba(37, 99, 235, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
 }
 
 body {
-  margin: 0;
   font-family: var(--primary-font);
+  font-size: clamp(14px, 1.5vw, 16px);
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .card {
@@ -21,6 +42,8 @@ body {
   border-radius: var(--radius);
   box-shadow: var(--shadow-light);
   transition: 0.3s ease;
+  width: 100%;
+  background: white;
 }
 
 .card:hover {
@@ -29,13 +52,13 @@ body {
 }
 
 .page-title {
-  font-size: 26px;
+  font-size: clamp(20px, 4vw, 26px);
   font-weight: 600;
   margin-bottom: var(--spacing-lg);
 }
 
 .section-title {
-  font-size: 18px;
+  font-size: clamp(16px, 3vw, 18px);
   font-weight: 500;
   margin-bottom: var(--spacing-md);
 }
@@ -43,4 +66,82 @@ body {
 .full-width {
   width: 100%;
   margin-bottom: var(--spacing-md);
+}
+
+.flex {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.grid {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 var(--spacing-md);
+}
+
+button {
+  font-family: var(--primary-font);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(37, 99, 235, 0.4);
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(37, 99, 235, 0.7);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(37, 99, 235, 0.5) transparent;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: var(--spacing-md);
+  }
+
+  .flex {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 20px;
+  }
+
+  .section-title {
+    font-size: 16px;
+  }
 }

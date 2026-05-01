@@ -10,7 +10,7 @@
       <input
         matInput
         type="email"
-        formControlName="email">
+        formControlName="email" autocomplete="email">
 
       <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
         Email is required
@@ -28,7 +28,8 @@
       <input
         matInput
         [type]="hidePassword ? 'password' : 'text'"
-        formControlName="password">
+        formControlName="password"
+        autocomplete="current-password">
 
       <!-- TOGGLE BUTTON -->
       <button
