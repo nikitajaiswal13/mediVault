@@ -4,13 +4,15 @@ exports.sendContactEmail = async (req, res) => {
   const { name, email, message } = req.body;
 
   try {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL,
-        pass: process.env.EMAIL_PASSWORD
-      }
-    });
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, 
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_PASSWORD
+  }
+});
 
     await transporter.sendMail({
       from: process.env.EMAIL,
@@ -33,4 +35,7 @@ exports.sendContactEmail = async (req, res) => {
       message: 'Failed to send contact email'
     });
   }
+
+  console.log("EMAIL:", process.env.EMAIL);
+console.log("PASS:", process.env.EMAIL_PASSWORD);
 };
