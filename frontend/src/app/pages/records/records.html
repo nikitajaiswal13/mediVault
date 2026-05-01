@@ -1,71 +1,56 @@
 <div class="records-page">
-
   <!-- HERO -->
   <div class="records-hero">
-
     <!-- LEFT SIDE -->
     <div class="hero-left">
-
       <div class="hero-text">
         <h1>
           {{ isPatientView ? 'Patient Records' : 'All Medical Records' }}
         </h1>
 
         <p>
-          {{ isPatientView
-          ? 'Manage and upload records for this patient.'
-          : 'View medical records across all patients.' }}
+          {{
+            isPatientView
+              ? 'Manage and upload records for this patient.'
+              : 'View medical records across all patients.'
+          }}
         </p>
       </div>
 
-      <!-- BUTTON -->
       <button
         *ngIf="isPatientView"
         mat-raised-button
         color="primary"
         class="upload-btn"
-        (click)="openUploadDialog()">
+        (click)="openUploadDialog()"
+      >
         + Upload Record
       </button>
-
     </div>
 
-    <!-- IMAGE -->
-    <img
-      src="assets/img/records.png"
-      alt="Medical Records"
-      class="banner-image" />
-
+    <img src="assets/img/records.png" alt="Medical Records" class="banner-image" />
   </div>
 
-
-  <!-- LOADING -->
   <div *ngIf="isLoading" class="empty-state">
     <mat-icon>hourglass_empty</mat-icon>
     <p>Loading records...</p>
   </div>
 
-
-  <!-- EMPTY -->
   <div *ngIf="!isLoading && records.length === 0" class="empty-state">
     <mat-icon>description</mat-icon>
     <h3>No records found</h3>
     <p>
-      {{ isPatientView
-      ? 'Upload the first medical document for this patient.'
-      : 'No records available yet.' }}
+      {{
+        isPatientView
+          ? 'Upload the first medical document for this patient.'
+          : 'No records available yet.'
+      }}
     </p>
   </div>
 
-
-  <!-- GRID -->
   <div *ngIf="!isLoading && records.length > 0" class="records-grid">
-
     <div *ngFor="let record of records" class="record-card">
-
-      <!-- TOP -->
       <div class="record-card-top">
-
         <div class="record-info">
           <h3>{{ record.recordType }}</h3>
           <span class="hospital">
@@ -74,39 +59,25 @@
         </div>
 
         <span class="date">
-          {{ record.date | date:'mediumDate' }}
+          {{ record.date | date: 'mediumDate' }}
         </span>
-
       </div>
 
-
-      <!-- BODY -->
       <div class="record-card-body">
         <p>
           Medical document related to
-          <strong>{{ record.recordType }}</strong>.
+          <strong>{{ record.recordType }}</strong
+          >.
         </p>
       </div>
 
-
-      <!-- ACTIONS -->
       <div class="record-card-actions">
+        <a class="view-link" [href]="record.file" target="_blank"> View File </a>
 
-        <a class="view-link" [href]="record.file" target="_blank">
-  View File
-</a>
-
-        <button
-          mat-icon-button
-          color="warn"
-          (click)="deleteRecord(record._id)">
+        <button mat-icon-button color="warn" (click)="deleteRecord(record._id)">
           <mat-icon>delete</mat-icon>
         </button>
-
       </div>
-
     </div>
-
   </div>
-
 </div>
