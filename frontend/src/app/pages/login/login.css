@@ -1,26 +1,31 @@
 .dialog-title {
   font-weight: 600;
   font-size: 22px;
+  text-align: center; /* cleaner */
 }
 
 .login-form {
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .full-width {
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 14px; /* slightly tighter */
 }
 
 .login-btn {
   height: 45px;
-  margin-top: 10px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .signup-link {
   text-align: center;
-  margin-top: 15px;
+  margin-top: 14px;
   font-size: 14px;
+  color: #475569;
 }
 
 .signup-link a {
@@ -28,8 +33,26 @@
   cursor: pointer;
   font-weight: 500;
   text-decoration: none;
+  margin-left: 4px;
+  transition: 0.2s ease;
 }
 
 .signup-link a:hover {
+  color: #1d4ed8;
   text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .mat-mdc-dialog-content {
+    padding: 16px !important;
+  }
+
+  .mat-mdc-dialog-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mat-mdc-dialog-actions button {
+    width: 100%;
+  }
 }
