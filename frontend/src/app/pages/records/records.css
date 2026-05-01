@@ -1,35 +1,31 @@
 .records-page {
-  padding: 40px 80px;
+  padding: 40px 60px;
 }
 
 
 .records-hero {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 60px 70px;
+  gap: 40px;
+
+  padding: 40px 60px;
   border-radius: 24px;
   background: #e9eef9;
-  overflow: hidden;
   margin-bottom: 50px;
 }
 
-.banner-image {
-  position: absolute;
-  right: 20px; 
-  bottom: -30px;
-  width: 430px; 
-  opacity: 0.65; 
-  z-index: 1;
-  pointer-events: none;
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 500px;
 }
 
-
 .records-hero h1 {
-  font-size: 32px;
+  font-size: clamp(22px, 4vw, 32px);
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .records-hero p {
@@ -37,19 +33,32 @@
   font-size: 15px;
 }
 
+.upload-btn {
+  width: fit-content;
+  border-radius: 25px;
+  padding: 6px 18px;
+  text-transform: none;
+}
+
+.banner-image {
+  width: 300px;
+  max-width: 100%;
+  opacity: 0.75;
+}
+
 .records-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
 }
 
 
 .record-card {
   background: white;
-  padding: 24px;
+  padding: 22px;
   border-radius: 18px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .record-card:hover {
@@ -60,39 +69,41 @@
 .record-card-top {
   display: flex;
   justify-content: space-between;
-  align-items: start;
-  margin-bottom: 20px;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
 .record-card-top h3 {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
 }
 
 .hospital {
-  display: inline-block;
+  display: block;
   margin-top: 4px;
   font-size: 13px;
   color: #4b5563;
 }
 
 .date {
-  font-size: 13px;
+  font-size: 12px;
   color: #6b7280;
+  white-space: nowrap;
 }
 
-/* BODY */
 .record-card-body {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   font-size: 14px;
   color: #444;
 }
-
 
 .record-card-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .view-link {
@@ -105,7 +116,6 @@
   text-decoration: underline;
 }
 
-
 .empty-state {
   text-align: center;
   padding: 60px 0;
@@ -115,4 +125,40 @@
 .empty-state mat-icon {
   font-size: 40px;
   margin-bottom: 10px;
+}
+
+
+@media (max-width: 768px) {
+
+  .records-page {
+    padding: 30px 20px;
+  }
+
+  .records-hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+  }
+
+  .hero-left {
+    align-items: center;
+  }
+
+  .upload-btn {
+    width: 100%;
+  }
+
+  .banner-image {
+    width: 180px;
+    margin-top: 10px;
+  }
+
+  .record-card-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .date {
+    margin-top: 5px;
+  }
 }

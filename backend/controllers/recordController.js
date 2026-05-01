@@ -87,10 +87,9 @@ exports.getRecordsByPatient = async (req, res) => {
   }
 };
 
-
 exports.deleteRecord = async (req, res) => {
   try {
-  
+
     const record = await Record.findOne({
       _id: req.params.id,
       user: req.user.id
@@ -103,25 +102,28 @@ exports.deleteRecord = async (req, res) => {
       });
     }
 
-    try {
-      await cloudinary.uploader.destroy(record.filePublicId, {
-        resource_type: "raw"
-      });
-    } catch (cloudErr) {
-      console.error("Cloudinary delete failed:", cloudErr);
+    // 🔥 Delete from Cloudinary (if exists)
+    if (record.filePublicId) {
+      try {
+        const result = await cloudinary.uploader.destroy(
+          record.filePublicId,
+          { resource_type: "raw" } // important for PDFs/files
+        );
 
-      return res.status(500).json({
-        status: 'fail',
-        message: 'Failed to delete file from storage'
-      });
+        console.log("Cloudinary delete result:", result);
+
+      } catch (err) {
+        console.log("Cloudinary delete error:", err.message);
+        // ❗ DO NOT stop execution
+      }
     }
 
-
+    // ✅ Delete from DB
     await Record.findByIdAndDelete(record._id);
 
     return res.status(200).json({
       status: 'success',
-      message: 'Record and file deleted successfully'
+      message: 'Record deleted successfully'
     });
 
   } catch (err) {
