@@ -4,6 +4,11 @@
   padding: 0 40px;
   display: flex;
   align-items: center;
+
+  position: fixed;   
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .logo {
@@ -41,11 +46,17 @@
   display: none;
 }
 
-/* Mobile menu */
+/* MOBILE MENU */
 .mobile-menu {
   display: flex;
   flex-direction: column;
   background: #dbe7ff;
+
+  position: fixed;         
+  top: 70px;              
+  left: 0;
+  width: 100%;
+  z-index: 999;
 
   max-height: 0;
   overflow: hidden;
@@ -96,7 +107,7 @@
   transform: scale(0.97);
 }
 
-/* Responsive */
+/* RESPONSIVE */
 @media (max-width: 768px) {
 
   .nav-links {
@@ -110,4 +121,8 @@
   .navbar {
     padding: 0 16px;
   }
+}
+
+body {
+  padding-top: 70px;
 }
