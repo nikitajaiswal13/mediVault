@@ -14,11 +14,9 @@
   --primary-light: rgba(37, 99, 235, 0.08);
 }
 
-
-
+/* RESET */
 * {
   box-sizing: border-box;
-  max-width: 100%;
 }
 
 html, body {
@@ -27,18 +25,23 @@ html, body {
   margin: 0;
 }
 
+/* 🔥 FIX: navbar offset */
 body {
   font-family: var(--primary-font);
   font-size: clamp(14px, 1.5vw, 16px);
   line-height: 1.5;
+  background: #f8fafc;
+  padding-top: 64px;
 }
 
+/* MEDIA */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
+/* CARD */
 .card {
   padding: var(--spacing-lg);
   border-radius: var(--radius);
@@ -53,6 +56,7 @@ img {
   box-shadow: var(--shadow-hover);
 }
 
+/* TYPOGRAPHY */
 .page-title {
   font-size: clamp(20px, 4vw, 26px);
   font-weight: 600;
@@ -65,6 +69,7 @@ img {
   margin-bottom: var(--spacing-md);
 }
 
+/* LAYOUT UTILITIES */
 .full-width {
   width: 100%;
   margin-bottom: var(--spacing-md);
@@ -84,20 +89,22 @@ img {
   gap: var(--spacing-md);
 }
 
+/* 🔥 IMPORTANT: use this for all pages */
 .container {
   width: 100%;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
   padding: 0 var(--spacing-md);
 }
 
+/* BUTTON */
 button {
   font-family: var(--primary-font);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-/* Chrome, Edge, Safari */
+/* SCROLLBAR */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -121,7 +128,7 @@ button {
   scrollbar-color: rgba(37, 99, 235, 0.5) transparent;
 }
 
-/* Responsive */
+/* RESPONSIVE */
 @media (max-width: 1024px) {
   .container {
     padding: 0 12px;

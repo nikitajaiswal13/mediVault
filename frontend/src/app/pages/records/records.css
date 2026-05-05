@@ -1,69 +1,72 @@
 .records-page {
-  padding: 40px 60px;
+  padding: 32px 24px;
+  background: linear-gradient(to right, #f8fafc, #eef2ff);
+  min-height: 100vh;
 }
 
-
+/* HERO */
 .records-hero {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
+  gap: 30px;
 
-  padding: 40px 60px;
+  padding: 40px 32px;
   border-radius: 24px;
   background: #e9eef9;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .hero-left {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  max-width: 500px;
+  gap: 14px;
+  max-width: 480px;
 }
 
 .records-hero h1 {
-  font-size: clamp(22px, 4vw, 32px);
+  font-size: clamp(22px, 4vw, 30px);
   font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .records-hero p {
-  color: #555;
-  font-size: 15px;
+  color: #4b5563;
+  font-size: 14px;
 }
 
 .upload-btn {
   width: fit-content;
-  border-radius: 25px;
-  padding: 6px 18px;
+  border-radius: 20px;
+  padding: 6px 16px;
   text-transform: none;
 }
 
 .banner-image {
-  width: 300px;
+  width: 240px;
   max-width: 100%;
   opacity: 0.75;
 }
 
+/* GRID */
 .records-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
 }
 
-
+/* CARD */
 .record-card {
   background: white;
-  padding: 22px;
-  border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+  padding: 18px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   transition: all 0.25s ease;
 }
 
 .record-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
 .record-card-top {
@@ -71,11 +74,11 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 10px;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .record-card-top h3 {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -93,11 +96,12 @@
 }
 
 .record-card-body {
-  margin-bottom: 18px;
+  margin-bottom: 14px;
   font-size: 14px;
   color: #444;
 }
 
+/* ACTIONS */
 .record-card-actions {
   display: flex;
   justify-content: space-between;
@@ -116,28 +120,30 @@
   text-decoration: underline;
 }
 
+/* EMPTY */
 .empty-state {
   text-align: center;
-  padding: 60px 0;
+  padding: 50px 0;
   color: #6b7280;
 }
 
 .empty-state mat-icon {
-  font-size: 40px;
+  font-size: 36px;
   margin-bottom: 10px;
 }
 
-
+/* RESPONSIVE */
 @media (max-width: 768px) {
 
   .records-page {
-    padding: 30px 20px;
+    padding: 24px 16px;
   }
 
   .records-hero {
     flex-direction: column;
     text-align: center;
-    padding: 30px 20px;
+    padding: 24px 18px;
+    gap: 16px;
   }
 
   .hero-left {
@@ -149,7 +155,7 @@
   }
 
   .banner-image {
-    width: 180px;
+    width: 160px;
     margin-top: 10px;
   }
 
